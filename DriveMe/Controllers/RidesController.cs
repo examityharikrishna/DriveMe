@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DriveMe.Controllers
+namespace DriveMe.Controllers 
 {
     public class RidesController : Controller
     {
