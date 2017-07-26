@@ -1,5 +1,5 @@
 ﻿using DriveMe.DBEntities;
-using DriveMe.Models;
+using DriveMe.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

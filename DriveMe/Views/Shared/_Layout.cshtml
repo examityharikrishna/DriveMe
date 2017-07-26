@@ -50,7 +50,7 @@
             @if ((Session["IsLoggedIn"] != null && (int)Session["IsLoggedIn"] == 1))
             {
                 <div class="pull-right" >
-                    Welcome <b style="color:white;"> @(((DriveMe.Models.LoginViewModel)Session["User"]).UserName) !</b>
+                    Welcome <b style="color:white;"> @(((DriveMe.ViewModels.LoginViewModel)Session["User"]).UserName) !</b>
                 </div>
             }
             <!-- /.navbar-collapse -->
