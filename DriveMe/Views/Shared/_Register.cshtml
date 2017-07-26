@@ -1,0 +1,84 @@
+﻿
+@model DriveMe.Models.RegisterViewModel
+<div class="modal-header" style="background: #149c82; color: #fff; padding: 6px;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h5 class="modal-title">Register</h5>
+</div>
+<div id="registerForm" style="margin:20px" class="modal-body">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formRegister" }))
+    {
+        <fieldset>          
+            <div class="editor-label">
+                @Html.LabelFor(u => u.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "enter user name" })
+                @Html.ValidationMessageFor(u => u.UserName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", placeholder = "enter email" })
+                @Html.ValidationMessageFor(u => u.Email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Mobile)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Mobile, new { @class = "form-control", placeholder = "enter mobile" })
+                @Html.ValidationMessageFor(u => u.Mobile)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Password)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Password, new { @class = "form-control", placeholder = "enter password", type = "password" })
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+            <br />
+            <input id="btnRegisterDriver" type="button" value="Register" class="btn btn-primary" />
+            <input id="btnCancelRegisterDriver" type="button" value="Cancel" data-dismiss="modal" class="btn btn-default" />
+        </fieldset>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+<script>      
+        $('#btnRegisterDriver').click(function (e) {
+            e.preventDefault();
+            var form = $("#formRegister");
+            form.validate();
+            if (form.valid()) {
+                var dialog1 = bootbox.dialog({
+                    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Please wait...</div>',
+                    closeButton: false
+                })
+
+                $.ajax({
+                    url: "login/register",
+                    data: form.serialize(),
+                    type: "POST",
+                    success: function (data) {                       
+                        dialog1.modal('hide')
+                        dialog1 = bootbox.dialog({
+                            message: '<div class="text-center" style="color:green;"><i class="fa fa-spin fa-spinner"></i>Success</div>',
+                            closeButton: false
+                        })
+                        setInterval(function () {
+                            dialog1.modal('hide');
+                            $('#myModal').modal('hide');
+                        }, 3000);
+                        $('#registerForm').modal('hide');
+                        if (data === "") { }
+                    }
+                });
+            }
+            return false;
+        });
+</script>
+

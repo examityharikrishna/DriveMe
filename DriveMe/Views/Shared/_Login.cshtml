@@ -1,0 +1,71 @@
+﻿@model DriveMe.Models.LoginViewModel
+<div class="modal-header" style="background: #149c82; color: #fff; padding: 6px;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h5 class="modal-title">Login</h5>
+</div>
+<div style="margin:20px" class="modal-body">
+    @using (Html.BeginForm(string.Empty,string.Empty, FormMethod.Post, new { id = "formLogin" }))
+    {
+        <fieldset>           
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Email, new { @class = "form-control",placeholder="enter email id " })
+                @Html.ValidationMessageFor(u => u.Email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Password)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Password, new { @class = "form-control", placeholder="enter password",type="password" })
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+              @Html.ValidationMessage(String.Empty)
+            <br />
+            <input id="btnLogin" type="button" value="Login" class="btn btn-primary" />
+            <input id="btnCancelLogin" type="button" value="Cancel" data-dismiss="modal" class="btn btn-default" />
+        </fieldset>
+    }
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+<script>
+    $('#btnLogin').click(function (e) {
+        e.preventDefault();
+        var form = $("#formLogin");
+        form.validate();
+        if (form.valid()) {
+            var dialog1 = bootbox.dialog({
+                message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Pleaes wait...</div>',
+                closeButton: false
+            })
+        
+            $.ajax({
+                url: "login/dologin",
+                data: form.serialize(),
+                type: "POST",
+                success: function (data) {                   
+                    dialog1.modal('hide')                
+                    if (data === "success") {
+                        $('#myModal').modal('hide');
+                        location.href = 'dashboard/index';
+                    } else {                       
+                        $("#content11").html(data);
+                    }
+                },
+                error: function (data, status) {
+                    $.validator.unobtrusive.parse($("#myModal"));
+                    dialog1.modal('hide')
+                }
+            });
+        }
+        return false;
+    });
+    </script>

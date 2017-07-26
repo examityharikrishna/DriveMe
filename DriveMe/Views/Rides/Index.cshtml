@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "My Rides";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:20px">
+    <input id="btnCreateRide" type="button" value="Book a ride" class="btn btn-primary" />
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script>
+    $('#btnCreateRide').click(function () {       
+        location.href ="@Url.Action("new","rides")";
+    });
+</script>
