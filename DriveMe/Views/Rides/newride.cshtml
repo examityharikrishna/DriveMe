@@ -1,0 +1,59 @@
+﻿@model DriveMe.ViewModels.BookRideViewModel
+@{
+    ViewBag.Title = "My Rides";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Book a ride </h2>
+<div id="registerForm" style="margin:20px" class="modal-body">
+    @using (Html.BeginForm("new", "Rides", FormMethod.Post, new { id = "formbookride" }))
+    {
+        <fieldset>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.From)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.From, new { @class = "form-control", placeholder = "enter From address" })
+                @Html.ValidationMessageFor(u => u.From)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.To)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.To, new { @class = "form-control", placeholder = "enter To address" })
+                @Html.ValidationMessageFor(u => u.To)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.RideType)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(u => u.RideType, new SelectList(Model.RideTypes, "Id", "Name"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.RideType)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.RideMode)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(u => u.RideMode, new SelectList(Model.RideModes, "Id", "Name"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.RideMode)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Datetime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(u => u.Datetime)
+
+               
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.NunberOfPersons)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.NunberOfPersons, new { @class = "form-control", placeholder = "enter number of persons" })
+                @Html.ValidationMessageFor(u => u.NunberOfPersons)
+            </div>
+            <br />
+            <input id="btnRegisterDriver" type="submit" value="Book ride" class="btn btn-primary" />
+        </fieldset>
+    }
+</div>

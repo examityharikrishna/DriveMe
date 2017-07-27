@@ -27,5 +27,8 @@ namespace DriveMe.DBEntities
     
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<RideMode> RideModes { get; set; }
+        public virtual DbSet<RideType> RideTypes { get; set; }
+        public virtual DbSet<Ride> Rides { get; set; }
     }
 }

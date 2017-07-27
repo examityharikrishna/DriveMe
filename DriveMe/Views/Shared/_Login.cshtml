@@ -1,11 +1,11 @@
 ﻿@model DriveMe.ViewModels.LoginViewModel
-<div class="modal-header" style="background: #149c82; color: #fff; padding: 6px;">
+<div class="modal-header" style="color: yellow; padding: 6px;">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     <h5 class="modal-title">Login</h5>
 </div>
-<div style="margin:20px" class="modal-body">
+<div  class="modal-body">
     @using (Html.BeginForm(string.Empty,string.Empty, FormMethod.Post, new { id = "formLogin" }))
     {
         <fieldset>           

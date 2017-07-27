@@ -198,6 +198,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>driveme.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBEntities\Ride.cs">
+      <DependentUpon>driveme.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBEntities\RideMode.cs">
+      <DependentUpon>driveme.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBEntities\RideType.cs">
+      <DependentUpon>driveme.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBEntities\Role.cs">
       <DependentUpon>driveme.tt</DependentUpon>
     </Compile>
@@ -207,6 +216,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\BookRideViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +243,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.png" />
     <Content Include="Images\driveme.gif" />
     <Content Include="Images\logo.png" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -273,11 +287,10 @@
     <Content Include="Views\Shared\_Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Rides\Index.cshtml" />
-    <Content Include="Views\Rides\create.cshtml" />
+    <Content Include="Views\Rides\newride.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

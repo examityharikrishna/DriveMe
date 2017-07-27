@@ -1,12 +1,12 @@
 ﻿
 @model DriveMe.ViewModels.RegisterViewModel
-<div class="modal-header" style="background: #149c82; color: #fff; padding: 6px;">
+<div class="modal-header" style="color: #fff; padding: 6px;">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     <h5 class="modal-title">Register</h5>
 </div>
-<div id="registerForm" style="margin:20px" class="modal-body">
+<div id="registerForm"  class="modal-body">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formRegister" }))
     {
         <fieldset>          

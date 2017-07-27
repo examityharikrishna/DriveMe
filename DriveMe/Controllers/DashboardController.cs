@@ -9,7 +9,7 @@ namespace DriveMe.Controllers
 {
     public class DashboardController : Controller
     {
-        [AuthFilterAttribute]
+        [AuthFilterAttribute]        
         public ActionResult Index()
         {
             return View("Dashboard");

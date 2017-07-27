@@ -47,7 +47,7 @@ namespace DriveMe.Controllers{
                 return PartialView("_Login",objLogin);
             }
             Session["IsLoggedIn"] = 1;
-            Session["User"] = new LoginViewModel {Email=foundUser.Email, UserName=foundUser.Name };
+            Session["User"] = new DriveMe.Models.User {Id=foundUser.Id,Email=foundUser.Email, UserName=foundUser.Name };
             return Json("success");
         }
 

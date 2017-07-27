@@ -4,10 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d150980f64394765b50a1eb15c6b2c81" Name="Diagram1">
-        <EntityTypeShape EntityType="DriveMeModel.Role" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DriveMeModel.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="d150980f64394765b50a1eb15c6b2c81" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="DriveMeModel.Role" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveMeModel.User" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="DriveMeModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DriveMeModel.RideMode" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="DriveMeModel.RideType" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="DriveMeModel.Ride" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="DriveMeModel.FK_Ride_RideMode" />
+        <AssociationConnector Association="DriveMeModel.FK_Ride_RideType" />
+        <AssociationConnector Association="DriveMeModel.FK_Ride_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

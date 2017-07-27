@@ -12,16 +12,18 @@ namespace DriveMe.DBEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class RideType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RideType()
+        {
+            this.Rides = new HashSet<Ride>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string Mobile { get; set; }
-        public int RoleId { get; set; }
-        public string Password { get; set; }
     
-        public virtual Role Role { get; set; }
-        public virtual Ride Ride { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ride> Rides { get; set; }
     }
 }
