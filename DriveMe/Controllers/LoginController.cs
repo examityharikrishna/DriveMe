@@ -15,13 +15,7 @@ namespace DriveMe.Controllers{
         public LoginController()
         {
             _context = new DriveMeEntities();
-        }
-
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
+        }        
         
         public ActionResult Register(RegisterViewModel objRegister)
         {
@@ -41,13 +35,19 @@ namespace DriveMe.Controllers{
         public ActionResult DoLogin(LoginViewModel objLogin)
         {          
             DBEntities.User foundUser = _context.Users.SingleOrDefault(u => u.Email == objLogin.Email && u.Password == objLogin.Password);
+            
             if (foundUser == null)
             {
                 ModelState.AddModelError(string.Empty, "invalid username or password");
                 return PartialView("_Login",objLogin);
             }
             Session["IsLoggedIn"] = 1;
-            Session["User"] = new DriveMe.Models.User {Id=foundUser.Id,Email=foundUser.Email, UserName=foundUser.Name };
+            Session["User"] = new DriveMe.Models.User {
+                                                        Id =foundUser.Id,
+                                                        Email =foundUser.Email,
+                                                        UserName =foundUser.Name,
+                                                        Role = { Id = foundUser.Role.Id, Name = foundUser.Role.Name }
+                                                      };
             return Json("success");
         }
 
