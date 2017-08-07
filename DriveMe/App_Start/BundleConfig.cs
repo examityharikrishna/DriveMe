@@ -28,6 +28,15 @@ namespace DriveMe
                       "~/Content/bootstrap-flatly.css",
                       "~/Content/site.css",
                       "~/Content/logo-nav.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo/js").Include(
+           "~/Scripts/kendo/kendo.all.min.js",
+           "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+            "~/Content/kendo/kendo.common.min.css",
+            "~/Content/kendo/kendo.default.min.css"));
         }
     }
 }

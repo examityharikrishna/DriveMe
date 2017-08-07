@@ -24,19 +24,20 @@ namespace DriveMe.Controllers
         {
             
             DriveMe.Models.User user = ((DriveMe.Models.User)Session["User"]);
-            //List<Ride> lstRides = _context.Rides.Where(r => r.UserId == user.Id).ToList();
+            List<Ride> lstRides = _context.Rides.Where(r => r.UserId == user.Id).ToList();
             List<DriveMe.Models.Ride> userRides = new List<Models.Ride>();
-            //foreach (var ride in lstRides) {
-            //    DriveMe.Models.Ride obj  = new Models.Ride();
-            //    obj.From = ride.From;
-            //    obj.To = ride.To;
-            //    obj.NumberOfPersons = ride.NumberOfPersons;
-            //    obj.DateOfRide = ride.Datetime;
-            //    obj.RideId = ride.Id;
-            //    obj.RideMode = _context.RideModes.SingleOrDefault(r => r.Id == ride.RideMode).Name;
-            //    obj.RideType = _context.RideModes.SingleOrDefault(r => r.Id == ride.RideType).Name;
-            //    userRides.Add(obj);
-            //}
+            foreach (var ride in lstRides)
+            {
+                DriveMe.Models.Ride obj = new Models.Ride();
+                obj.From = ride.From;
+                obj.To = ride.To;
+                obj.NumberOfPersons = ride.NumberOfPersons;
+                obj.DateOfRide = ride.Datetime;
+                obj.RideId = ride.Id;
+                obj.RideMode = _context.RideModes.SingleOrDefault(r => r.Id == ride.RideMode).Name;
+                obj.RideType = _context.RideModes.SingleOrDefault(r => r.Id == ride.RideType).Name;
+                userRides.Add(obj);
+            }
             return View("Index",userRides);
         }
 
