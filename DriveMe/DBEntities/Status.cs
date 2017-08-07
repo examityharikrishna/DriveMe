@@ -12,20 +12,9 @@ namespace DriveMe.DBEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class Ride
+    public partial class Status
     {
         public int Id { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
-        public System.DateTime Datetime { get; set; }
-        public int RideType { get; set; }
-        public int RideMode { get; set; }
-        public int UserId { get; set; }
-        public int NumberOfPersons { get; set; }
-        public int Status { get; set; }
-    
-        public virtual RideMode RideMode1 { get; set; }
-        public virtual RideType RideType1 { get; set; }
-        public virtual User User { get; set; }
+        public string Type { get; set; }
     }
 }

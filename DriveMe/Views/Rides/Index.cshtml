@@ -1,15 +1,41 @@
-﻿@{
+﻿@model List<DriveMe.ViewModels.RideViewModel>
+@{
     ViewBag.Title = "My Rides";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div style="margin-top:20px">
+<style type="text/css">
+    .k-header {
+       font-weight:bold !important;
+    }
+</style>
+<div style="margin-top:20px;">
     <input id="btnCreateRide" type="button" value="Book a ride" class="btn btn-primary" />
+    <div class="container" style="padding:5px;">
+        @(Html.Kendo().Grid(Model)
+         .Name("MyRides")
+         .Columns(columns =>
+         {
+             columns.Bound(p => p.From).Title("From");
+             columns.Bound(p => p.To).Title("To");
+             columns.Bound(p => p.RideMode).Title("Ride Mode");
+             columns.Bound(p => p.RideType).Title("Ride Type");
+             columns.Bound(p => p.DateOfRide).Title("Date");
+             columns.Bound(p => p.NumberOfPersons).Title("Persons");
+             columns.Bound(p => p.Status).Title("Status");
+         })
+          .Sortable()
+          .DataSource(dataSource => dataSource
+          .Ajax()
+          .PageSize(20)
+          .ServerOperation(false)
+     )
+        )
+    </div>
 </div>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 <script>
-    $('#btnCreateRide').click(function () {       
-        location.href ="@Url.Action("new","rides")";
+    $('#btnCreateRide').click(function () {
+        location.href = "@Url.Action("new","rides")";
     });
 </script>

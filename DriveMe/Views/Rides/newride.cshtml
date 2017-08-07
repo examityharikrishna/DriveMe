@@ -5,7 +5,16 @@
 }
 <h2>Book a ride </h2>
 <div id="registerForm" style="margin:20px" class="modal-body">
+    @*@using (Ajax.BeginForm("new", "Rides",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "formAddAvailabilityContainer",
+            OnSuccess = "AddAvailabilitySuccess"
+        }, new { @class = "AjaxForm", @id = "formbookride" }))*@
     @using (Html.BeginForm("new", "Rides", FormMethod.Post, new { id = "formbookride" }))
+   
     {
         <fieldset>
             <div class="editor-label">
@@ -42,8 +51,6 @@
             <div class="editor-field">
                 @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(u => u.Datetime)
-
-               
             </div>
             <div class="editor-label">
                 @Html.LabelFor(u => u.NunberOfPersons)
@@ -57,3 +64,8 @@
         </fieldset>
     }
 </div>
+<script>
+    //function AddAvailabilitySuccess(){
+    //alert('hi')
+    //}
+</script>

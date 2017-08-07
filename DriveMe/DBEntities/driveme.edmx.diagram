@@ -14,6 +14,7 @@
         <AssociationConnector Association="DriveMeModel.FK_Ride_RideMode" />
         <AssociationConnector Association="DriveMeModel.FK_Ride_RideType" />
         <AssociationConnector Association="DriveMeModel.FK_Ride_User" />
+        <EntityTypeShape EntityType="DriveMeModel.Status" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

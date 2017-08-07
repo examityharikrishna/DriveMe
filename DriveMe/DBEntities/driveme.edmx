@@ -17,6 +17,7 @@
           <Property Name="RideMode" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="NumberOfPersons" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RideMode">
           <Key>
@@ -38,6 +39,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -103,6 +111,7 @@
           <EntitySet Name="RideMode" EntityType="Self.RideMode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RideType" EntityType="Self.RideType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ride_RideMode" Association="Self.FK_Ride_RideMode">
             <End Role="RideMode" EntitySet="RideMode" />
@@ -180,6 +189,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Ride" EntitySet="Rides" />
           </AssociationSet>
+          <EntitySet Name="Status" EntityType="DriveMeModel.Status" />
         </EntityContainer>
         <EntityType Name="RideType">
           <Key>
@@ -204,6 +214,7 @@
           <NavigationProperty Name="RideMode1" Relationship="DriveMeModel.FK_Ride_RideMode" FromRole="Ride" ToRole="RideMode" />
           <NavigationProperty Name="RideType1" Relationship="DriveMeModel.FK_Ride_RideType" FromRole="Ride" ToRole="RideType" />
           <NavigationProperty Name="User" Relationship="DriveMeModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="RideMode">
           <Key>
@@ -249,6 +260,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -286,6 +304,7 @@
           <EntitySetMapping Name="Rides">
             <EntityTypeMapping TypeName="DriveMeModel.Ride">
               <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="NumberOfPersons" ColumnName="NumberOfPersons" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RideMode" ColumnName="RideMode" />
@@ -301,6 +320,14 @@
             <EntityTypeMapping TypeName="DriveMeModel.RideMode">
               <MappingFragment StoreEntitySet="RideMode">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="DriveMeModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

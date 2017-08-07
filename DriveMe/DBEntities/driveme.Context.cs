@@ -30,5 +30,6 @@ namespace DriveMe.DBEntities
         public virtual DbSet<RideType> RideTypes { get; set; }
         public virtual DbSet<Ride> Rides { get; set; }
         public virtual DbSet<RideMode> RideModes { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
     }
 }
