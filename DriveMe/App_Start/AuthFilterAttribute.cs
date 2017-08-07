@@ -17,11 +17,7 @@ namespace DriveMe.App_Start
             {
                 //  filterContext.Result = new HttpUnauthorizedResult();
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-            }
-            else
-            {
-               // filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home" }));
-            }
+            }           
         }
 
         void IAuthenticationFilter.OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)

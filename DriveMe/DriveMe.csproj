@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ride.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\BookRideViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -242,7 +244,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="HtmlPage1.html" />
     <Content Include="Images\1.png" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.png" />
@@ -288,6 +289,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Rides\Index.cshtml" />
     <Content Include="Views\Rides\newride.cshtml" />
+    <Content Include="Views\Driver\drivers.cshtml" />
+    <Content Include="Views\Dashboard\cdb.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

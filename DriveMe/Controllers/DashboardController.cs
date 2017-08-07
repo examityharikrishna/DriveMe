@@ -9,12 +9,18 @@ namespace DriveMe.Controllers
 {
     public class DashboardController : Controller
     {
-        [AuthFilterAttribute]        
+        [AuthFilterAttribute]
         public ActionResult Index()
         {
-            return View("Dashboard");
+            if (Session["User"] != null && ((DriveMe.Models.User)Session["User"]).Role.Name.ToLower() == "admin")
+            {
+                return View("Dashboard");
+            }
+            else {
+                return View("cdb");
+            }
         }
-      
+
         public ActionResult OpenLogin()
         {
             return PartialView("_Login");

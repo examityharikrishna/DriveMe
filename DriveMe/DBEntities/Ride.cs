@@ -18,9 +18,9 @@ namespace DriveMe.DBEntities
         public string From { get; set; }
         public string To { get; set; }
         public System.DateTime Datetime { get; set; }
-        public Nullable<int> RideType { get; set; }
-        public Nullable<int> RideMode { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int RideType { get; set; }
+        public int RideMode { get; set; }
+        public int UserId { get; set; }
         public int NumberOfPersons { get; set; }
     
         public virtual RideMode RideMode1 { get; set; }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - DriveMe</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -29,11 +30,22 @@
 
                     @if ((Session["IsLoggedIn"] != null && (int)Session["IsLoggedIn"] == 1))
                     {
-                        <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>                     
-                        <li>@Html.ActionLink("My Rides", "rides", "Rides")</li>
-                        <li>                           
+                        <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+
+                        if (Session["User"] != null && ((DriveMe.Models.User)Session["User"]).Role.Name == "admin")
+                        {
+                            <li>
+                                @Html.ActionLink("Drivers", "all", "Driver")
+                            </li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("My Rides", "rides", "Rides")</li>
+                        }
+                        <li>
                             @Html.ActionLink("Sign Out", "Logout", "Login")
                         </li>
+
                     }
                     else
                     {
@@ -50,7 +62,7 @@
             @if ((Session["IsLoggedIn"] != null && (int)Session["IsLoggedIn"] == 1))
             {
                 <div class="pull-right" >
-                    <b style="color:white;"> Hello @(((DriveMe.Models.User)Session["User"]).UserName) !</b>
+                    <b style="color:white;"> Hello @(((DriveMe.Models.User)Session["User"]).UserName) !&nbsp;&nbsp;&nbsp;</b><text style="color:white;">Logged in as : @(((DriveMe.Models.User)Session["User"]).Role.Name)</text>
                 </div>
             }
             <!-- /.navbar-collapse -->
@@ -65,7 +77,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+   
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/bundles/jqueryval")

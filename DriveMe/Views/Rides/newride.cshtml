@@ -23,18 +23,18 @@
                 @Html.ValidationMessageFor(u => u.To)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(u => u.RideType)
+                @Html.LabelFor(u => u.RideTypeId)
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(u => u.RideType, new SelectList(Model.RideTypes, "Id", "Name"), "Select", new { @class = "form-control" })
-                @Html.ValidationMessageFor(u => u.RideType)
+                @Html.DropDownListFor(u => u.RideTypeId, new SelectList(Model.RideTypes, "Id", "Name"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.RideTypeId)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(u => u.RideMode)
+                @Html.LabelFor(u => u.RideModeId)
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(u => u.RideMode, new SelectList(Model.RideModes, "Id", "Name"), "Select", new { @class = "form-control" })
-                @Html.ValidationMessageFor(u => u.RideMode)
+                @Html.DropDownListFor(u => u.RideModeId, new SelectList(Model.RideModes, "Id", "Name"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.RideModeId)
             </div>
             <div class="editor-label">
                 @Html.LabelFor(u => u.Datetime)

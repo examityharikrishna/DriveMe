@@ -13,9 +13,9 @@
           <Property Name="From" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="To" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
-          <Property Name="RideType" Type="int" />
-          <Property Name="RideMode" Type="int" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="RideType" Type="int" Nullable="false" />
+          <Property Name="RideMode" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="NumberOfPersons" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RideMode">
@@ -51,7 +51,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Ride_RideMode">
-          <End Role="RideMode" Type="Self.RideMode" Multiplicity="0..1" />
+          <End Role="RideMode" Type="Self.RideMode" Multiplicity="1" />
           <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RideMode">
@@ -63,7 +63,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ride_RideType">
-          <End Role="RideType" Type="Self.RideType" Multiplicity="0..1" />
+          <End Role="RideType" Type="Self.RideType" Multiplicity="1" />
           <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RideType">
@@ -76,13 +76,13 @@
         </Association>
         <Association Name="FK_Ride_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Ride" Type="Self.Ride" Multiplicity="0..1" />
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Ride">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,9 +142,9 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ride" Relationship="DriveMeModel.FK_Ride_User" FromRole="User" ToRole="Ride" />
+          <NavigationProperty Name="Rides" Relationship="DriveMeModel.FK_Ride_User" FromRole="User" ToRole="Ride" />
         </EntityType>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -165,9 +165,9 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="RideModes" EntityType="DriveMeModel.RideMode" />
           <EntitySet Name="RideTypes" EntityType="DriveMeModel.RideType" />
           <EntitySet Name="Rides" EntityType="DriveMeModel.Ride" />
+          <EntitySet Name="RideModes" EntityType="DriveMeModel.RideMode" />
           <AssociationSet Name="FK_Ride_RideMode" Association="DriveMeModel.FK_Ride_RideMode">
             <End Role="RideMode" EntitySet="RideModes" />
             <End Role="Ride" EntitySet="Rides" />
@@ -180,15 +180,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Ride" EntitySet="Rides" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="RideMode">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Rides" Relationship="DriveMeModel.FK_Ride_RideMode" FromRole="RideMode" ToRole="Ride" />
-        </EntityType>
+        </EntityContainer>
         <EntityType Name="RideType">
           <Key>
             <PropertyRef Name="Id" />
@@ -205,16 +197,24 @@
           <Property Name="From" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="To" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RideType" Type="Int32" />
-          <Property Name="RideMode" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
+          <Property Name="RideType" Type="Int32" Nullable="false" />
+          <Property Name="RideMode" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="NumberOfPersons" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RideMode1" Relationship="DriveMeModel.FK_Ride_RideMode" FromRole="Ride" ToRole="RideMode" />
           <NavigationProperty Name="RideType1" Relationship="DriveMeModel.FK_Ride_RideType" FromRole="Ride" ToRole="RideType" />
           <NavigationProperty Name="User" Relationship="DriveMeModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
         </EntityType>
+        <EntityType Name="RideMode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rides" Relationship="DriveMeModel.FK_Ride_RideMode" FromRole="RideMode" ToRole="Ride" />
+        </EntityType>
         <Association Name="FK_Ride_RideMode">
-          <End Type="DriveMeModel.RideMode" Role="RideMode" Multiplicity="0..1" />
+          <End Type="DriveMeModel.RideMode" Role="RideMode" Multiplicity="1" />
           <End Type="DriveMeModel.Ride" Role="Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RideMode">
@@ -226,7 +226,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ride_RideType">
-          <End Type="DriveMeModel.RideType" Role="RideType" Multiplicity="0..1" />
+          <End Type="DriveMeModel.RideType" Role="RideType" Multiplicity="1" />
           <End Type="DriveMeModel.Ride" Role="Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RideType">
@@ -239,17 +239,17 @@
         </Association>
         <Association Name="FK_Ride_User">
           <End Type="DriveMeModel.User" Role="User" Multiplicity="1" />
-          <End Type="DriveMeModel.Ride" Role="Ride" Multiplicity="0..1" />
+          <End Type="DriveMeModel.Ride" Role="Ride" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Ride">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -266,20 +266,12 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DriveMeModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RideModes">
-            <EntityTypeMapping TypeName="DriveMeModel.RideMode">
-              <MappingFragment StoreEntitySet="RideMode">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -301,6 +293,14 @@
                 <ScalarProperty Name="Datetime" ColumnName="Datetime" />
                 <ScalarProperty Name="To" ColumnName="To" />
                 <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RideModes">
+            <EntityTypeMapping TypeName="DriveMeModel.RideMode">
+              <MappingFragment StoreEntitySet="RideMode">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

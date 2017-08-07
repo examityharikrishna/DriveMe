@@ -32,8 +32,11 @@ namespace DriveMe.Controllers{
         }
 
         [HttpPost]
-        public ActionResult DoLogin(LoginViewModel objLogin)
-        {          
+        public ActionResult DoLogin(LoginViewModel objLogin)           
+        {
+
+            List<User> lst = _context.Users.ToList();
+
             DBEntities.User foundUser = _context.Users.SingleOrDefault(u => u.Email == objLogin.Email && u.Password == objLogin.Password);
             
             if (foundUser == null)

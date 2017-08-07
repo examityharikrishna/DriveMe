@@ -3,5 +3,73 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+<h2>Admin Dashboard</h2>
 
+<div class="container">
+    <div class="column-left">
+        <div style="box-shadow: 0px 0px 5px #888888;">
+            <h3>Tasks</h3>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+        </div>
+    </div>
+    <div class="column-center" id="map" style="width:550px;height:550px"></div>
+    <div class="column-right" style="box-shadow: 0px 0px 5px #888888;">
+        <div>
+            <h4>Drivers available</h4>
+            <div style="height:70px;background-color:#beefcb;">
+                <div style="margin-left:5px">
+                    <b>Scott</b><br />
+                    Status: Online<br />
+                    Battery: 50%;
+                </div>
+            </div>
+           
+            <div style="height:70px;background-color:antiquewhite;">
+                <div style="margin-left:5px">
+                    <b>James</b><br />
+                    Status: Offline
+                </div>
+            </div>
+            <div style="height:70px;background-color:#beefcb;">
+                <div style="margin-left:5px">
+                    <b>Will smith</b><br />
+                    Status: Online<br />
+                    Battery: 76%;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAAB1E11Pjfd_gnXxj1WotICC_fBy81_I"></script>
+<script>
+    $(document).ready(function () {
+        google.maps.event.addDomListener(window, 'load', initMap);
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            function showPosition(position) {
+                //map options
+                var mapOptions = {
+                    center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                //set marker
+                var myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    animation: google.maps.Animation.DROP,
+                    map: map,
+                    title: 'You are here!'
+                });
+
+            }
+        }
+    });
+</script>

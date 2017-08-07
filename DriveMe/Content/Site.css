@@ -32,3 +32,7 @@ color:red
   border-width:1px
   
 }
+
+.column-left{ float: left; width: 25%; }
+.column-right{ float: right; width: 25%; }
+.column-center{ display: inline-block; width: 75%; }
