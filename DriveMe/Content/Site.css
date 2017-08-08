@@ -25,14 +25,29 @@ textarea {
 
 /*CSS overrides*/
 .field-validation-error {
-color:red
-}
-.input-validation-error {
-  border-color:red;
-  border-width:1px
-  
+    color: red;
 }
 
-.column-left{ float: left; width: 25%; }
-.column-right{ float: right; width: 25%; }
-.column-center{ display: inline-block; width: 75%; }
+.input-validation-error {
+    border-color: red;
+    border-width: 1px;
+}
+
+.column-left {
+    float: left;
+    width: 25%;
+}
+
+.column-right {
+    float: right;
+    width: 25%;
+}
+
+.column-center {
+    display: inline-block;
+    width: 75%;
+}
+
+.k-header {
+    font-weight: bold !important;
+}

@@ -1,1 +1,41 @@
-﻿<h3>Drivers list</h3>
+﻿@model List<DriveMe.ViewModels.DriverViewModel>
+@{
+    ViewBag.Title = "Drivers";
+}
+<div style="margin-top:20px;">
+    <input id="btnCreateDriver" type="button" value="Create driver" class="btn btn-primary" /><br />
+    <h3>Drivers list</h3>
+    <div class="container" style="padding:5px;">
+        @(Html.Kendo().Grid(Model)
+         .Name("Drivers")
+         .Columns(columns =>
+         {
+             columns.Bound(p => p.Name).Title("Name");
+             columns.Bound(p => p.Email).Title("Email");
+             columns.Bound(p => p.Mobile).Title("Mobile");
+             columns.Bound(p => p.Type).Title("Driver Type");
+         })
+          .Sortable()
+          .DataSource(dataSource => dataSource
+          .Ajax()
+          .PageSize(20)
+          .ServerOperation(false)
+     )
+        )
+    </div>
+</div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-toggle="modal" data-keyboard="false" style="margin: 30px auto;">
+    <div class="modal-content" id="content11"></div>
+</div>
+<script>
+    $('#btnCreateDriver').click(function () {
+    
+        var url = "@Url.Action("create","driver")";
+        $.get(url, function (data) {
+            $('#content11').html(data);
+            $('#myModal').css('width', '500px');
+            $('#myModal').css('overflow-y', 'auto');
+            $('#myModal').modal('show');
+        });
+    });
+</script>

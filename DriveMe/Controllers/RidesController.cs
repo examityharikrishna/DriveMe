@@ -9,6 +9,8 @@ using System.Web.Mvc;
 
 namespace DriveMe.Controllers
 {
+    [AuthFilterAttribute]
+    [SecureControllerRouteFilter]
     public class RidesController : Controller
     {
         DriveMeEntities _context = null;
@@ -17,8 +19,6 @@ namespace DriveMe.Controllers
             _context = new DriveMeEntities();
         }
 
-        // GET: Rides
-        [AuthFilterAttribute]
         [ActionName("rides")]
         public ActionResult Index()
         {
@@ -36,14 +36,13 @@ namespace DriveMe.Controllers
                 obj.RideId = ride.Id;
                 obj.RideMode = _context.RideModes.SingleOrDefault(r => r.Id == ride.RideMode).Name;
                 obj.RideType = _context.RideTypes.SingleOrDefault(r => r.Id == ride.RideType).Name;
-                obj.Status =  Enum.GetName(typeof(DriveMe.Models.Status), ride.Status);
+                obj.Status = Enum.GetName(typeof(DriveMe.Models.Status), ride.Status);
                 userRides.Add(obj);
             }
             return View("Index", userRides);
         }
 
         [ActionName("new")]
-        //[AuthFilterAttribute]
         public ActionResult Create()
         {
             BookRideViewModel obj = new BookRideViewModel();
@@ -60,7 +59,6 @@ namespace DriveMe.Controllers
 
         [HttpPost]
         [ActionName("new")]
-        //[AuthFilterAttribute]
         public ActionResult Create(BookRideViewModel obj)
         {
             Ride objc = new DBEntities.Ride();
@@ -75,7 +73,7 @@ namespace DriveMe.Controllers
             _context.Rides.Add(objc);
 
             _context.SaveChanges();
-           return RedirectToAction("rides");           
+            return RedirectToAction("rides");
         }
     }
 }
