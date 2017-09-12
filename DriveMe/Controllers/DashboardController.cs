@@ -7,7 +7,7 @@ using DriveMe.App_Start;
 
 namespace DriveMe.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController //: Controller
     {
         [AuthFilterAttribute]
         public ActionResult Index()
