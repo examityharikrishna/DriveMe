@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace DriveMe.Controllers{
    
-    public class LoginController// : Controller
+    public class LoginController : Controller
     {
         DriveMeEntities _context = null;
         public LoginController()
